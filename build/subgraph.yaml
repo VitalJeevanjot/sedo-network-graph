@@ -1,0 +1,26 @@
+specVersion: 0.0.2
+description: Any Domain register-sell-buy on Ethereum
+repository: https://github.com/genievot/sedo-network-subgraph
+schema:
+  file: schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: Sedo
+    network: kovan
+    source:
+      address: "0x819BA2e9dECf30108403C1656a66676c2857e5EA"
+      abi: Sedo_Network
+      startBlock: 21190892
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - Gravatar
+      abis:
+        - name: Sedo_Network
+          file: Sedo/abis/DomainOffering.json
+      eventHandlers:
+        - event: Domain_Added(address,string)
+          handler: handleNewDomain
+      file: Sedo/Sedo.wasm

@@ -1,0 +1,5 @@
+type Domain @entity {
+  id: ID!
+  owner: Bytes!
+  domain: String!
+}
